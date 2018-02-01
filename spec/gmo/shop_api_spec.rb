@@ -117,6 +117,63 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_au" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_au({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_au()
+      }.should raise_error("Required order_id, job_cd, amount were not provided.")
+    end
+  end
+
+  describe "#entry_tran_sb" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_sb({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_sb()
+      }.should raise_error("Required order_id, job_cd, amount were not provided.")
+    end
+  end
+
+  describe "#entry_tran_docomo" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_docomo({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_docomo()
+      }.should raise_error("Required order_id, job_cd, amount were not provided.")
+    end
+  end
+
   describe "#entry_tran_brandtoken" do
     it "gets data about a transaction", :vcr do
       order_id = @order_id
@@ -378,6 +435,93 @@ describe "GMO::Payment::ShopAPI" do
       lambda {
         result = @service.exec_tran_linepay()
       }.should raise_error("Required access_id, access_pass, order_id, ret_url, error_rcv_url, product_name were not provided.")
+    end
+  end
+
+  describe "#exec_tran_au" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_au({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_au({
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :order_id      => order_id,
+        :commodity     => 'テスト',
+        :ret_url       => 'https://example.com/path/to/return/success',
+        :service_name  => 'サービス',
+        :service_tel   => '0751234567'
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["Token"].nil?.should_not be_truthy
+      result["StartURL"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_au()
+      }.should raise_error("Required access_id, access_pass, order_id, commodity, ret_url, service_name, service_tel were not provided.")
+    end
+  end
+
+  describe "#exec_tran_sb" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_sb({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_sb({
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :order_id      => order_id,
+        :ret_url       => 'https://example.com/path/to/return/success'
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["Token"].nil?.should_not be_truthy
+      result["StartURL"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_sb()
+      }.should raise_error("Required access_id, access_pass, order_id, ret_url were not provided.")
+    end
+  end
+
+  describe "#exec_tran_docomo" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_docomo({
+        :order_id => order_id,
+        :job_cd => 'CAPTURE',
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_docomo({
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :order_id      => order_id,
+        :ret_url       => 'https://example.com/path/to/return/success'
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["Token"].nil?.should_not be_truthy
+      result["StartURL"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_docomo()
+      }.should raise_error("Required access_id, access_pass, order_id, ret_url were not provided.")
     end
   end
 
