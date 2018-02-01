@@ -80,6 +80,36 @@ module GMO
         post_request name, options
       end
 
+      # 【au かんたん決済】
+      #  9.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_au(options = {})
+        name = "EntryTranAu.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【ドコモケータイ払い決済】
+      #  11.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_docomo(options = {})
+        name = "EntryTranDocomo.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【ソフトバンクまとめて支払い決済】
+      #  13.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_sb(options = {})
+        name = "EntryTranSb.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ### @params ###
       # OrderID
       # JobCd
@@ -203,6 +233,36 @@ module GMO
       def exec_tran_linepay(options = {})
         name = "ExecTranLinepay.idPass"
         required = [:access_id, :access_pass, :order_id, :ret_url, :error_rcv_url, :product_name]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #【au かんたん決済】
+      # 9.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
+      def exec_tran_au(options = {})
+        name = "ExecTranAu.idPass"
+        required = [:access_id, :access_pass, :order_id, :commodity, :ret_url, :service_name, :service_tel]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #【ドコモケータイ払い決済】
+      #  11.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
+      def exec_tran_docomo(options = {})
+        name = "ExecTranDocomo.idPass"
+        required = [:access_id, :access_pass, :order_id, :ret_url]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【ソフトバンクまとめて支払い決済】
+      #  13.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
+      def exec_tran_sb(options = {})
+        name = "ExecTranSb.idPass"
+        required = [:access_id, :access_pass, :order_id, :ret_url]
         assert_required_options(required, options)
         post_request name, options
       end

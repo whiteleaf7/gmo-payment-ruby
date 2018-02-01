@@ -101,6 +101,16 @@ module GMO
         post_request name, options
       end
 
+      #【au かんたん決済】
+      # 9.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
+      def exec_tran_au(options = {})
+        name = "ExecTranAu.idPass"
+        required = [:access_id, :access_pass, :order_id, :commodity, :ret_url, :service_name, :service_tel, :member_id, :create_member]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
