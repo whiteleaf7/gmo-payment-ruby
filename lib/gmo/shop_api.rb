@@ -345,6 +345,74 @@ module GMO
         post_request name, options
       end
 
+      #【au かんたん決済】
+      # 9.1.2.2. 決済実行
+      # 仮売上の決済に対して実売上を行います。尚、実行時に仮売上時との金額チェックを行います。
+      # /payment/AuSales.idPass
+      # ShopID
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # Amount
+      # Tax
+      ### @return ###
+      # OrderID
+      # Status
+      # Amount
+      # Tax
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.sales_au({
+      #   access_id:   "a41d83f1f4c908baeda04e6dc03e300c",
+      #   access_pass: "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:    "597ae8c36120b23a3c00014e",
+      #   amount:      100,
+      #   tax:         0
+      # })
+      # {"OrderID"=>"597ae8c36120b23a3c00014e", "Status"=>"SALES", "Amount"=>"100", "Tax"=>"0", "ErrCode" => "E01|E02", "ErrInfo" => "E01|E02"}
+      def sales_au(options = {})
+        name = "AuSales.idPass"
+        required = [:access_id, :access_pass, :order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #【ソフトバンクまとめて支払い決済】
+      ## 13.3.2.1.決済変更
+      # 仮売上の決済に対して実売上を行います。尚、実行時に仮売上時との金額チェックを行います。
+      # /payment/SbSales.idPass
+      # ShopID
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # Amount
+      # Tax
+      ### @return ###
+      # OrderID
+      # Status
+      # Amount
+      # Tax
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.sales_sb({
+      #   access_id:   "a41d83f1f4c908baeda04e6dc03e300c",
+      #   access_pass: "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:    "597ae8c36120b23a3c00014e",
+      #   amount:      100,
+      #   tax:         0
+      # })
+      # {"OrderID"=>"597ae8c36120b23a3c00014e", "Status"=>"SALES", "Amount"=>"100", "Tax"=>"0", "ErrCode" => "E01|E02", "ErrInfo" => "E01|E02"}
+      def sales_sb(options = {})
+        name = "SbSales.idPass"
+        required = [:access_id, :access_pass, :order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.15.2.1.金額変更
       # 決済が完了した取引に対して金額の変更を行います。
       ### @return ###
@@ -744,6 +812,76 @@ module GMO
       def cancel_pay_easy(options = {})
         name = "PayEasyCancel.idPass"
         required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #【au かんたん決済】
+      ## 9.2.2.1. 決済キャンセル・返品 接続先URL
+      # 決済が完了した取引に対して決済内容のキャンセル・返品を行います。
+      # /payment/AuCancelReturn.idPass
+      # ShopID
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # CancelAmount
+      # CancelTax
+      ### @return ###
+      # OrderID
+      # Status
+      # Amount
+      # Tax
+      # CancelAmount
+      # CancelTax
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.cancel_return_au({
+      #   access_id:     "a41d83f1f4c908baeda04e6dc03e300c",
+      #   access_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:      "597ae8c36120b23a3c00014e",
+      #   cancel_amount: 100,
+      #   cancel_tax:    0
+      # })
+      # {"OrderID"=>"597ae8c36120b23a3c00014e", "Status"=>"CANCEL or RETURN", "Amount" => "0", "Tax" => "0", "CancelAmount"=>"100", "CancelTax"=>"0", "ErrCode" => "E01|E02", "ErrInfo" => "E01|E02"}
+      def cancel_return_au(options = {})
+        name = "AuCancelReturn.idPass"
+        required = [:access_id, :access_pass, :order_id, :cancel_amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #【ソフトバンクまとめて支払い決済】
+      ## 13.2.2.1. 決済キャンセル
+      # 決済が完了した取引に対して決済内容のキャンセルを行います。
+      # /payment/SbCancel.idPass
+      # ShopID
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # CancelAmount
+      # CancelTax
+      ### @return ###
+      # OrderID
+      # Status
+      # CancelAmount
+      # CancelTax
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.cancel_sb({
+      #   access_id:     "a41d83f1f4c908baeda04e6dc03e300c",
+      #   access_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:      "597ae8c36120b23a3c00014e",
+      #   cancel_amount: 100,
+      #   cancel_tax:    0
+      # })
+      # {"OrderID"=>"597ae8c36120b23a3c00014e", "Status"=>"CANCEL", "CancelAmount"=>"100", "CancelTax"=>"0", "ErrCode" => "E01|E02", "ErrInfo" => "E01|E02"}
+      def cancel_sb(options = {})
+        name = "SbCancel.idPass"
+        required = [:access_id, :access_pass, :order_id, :cancel_amount]
         assert_required_options(required, options)
         post_request name, options
       end
