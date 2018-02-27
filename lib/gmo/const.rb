@@ -104,6 +104,7 @@ module GMO
       :receipts_disp_13      => "ReceiptsDisp13",
       :recurring_id          => "RecurringID",
       :redirect_url          => "RedirectURL",
+      :regist_type           => "RegistType",
       :register_disp_1       => "RegisterDisp1",
       :register_disp_2       => "RegisterDisp2",
       :register_disp_3       => "RegisterDisp3",
