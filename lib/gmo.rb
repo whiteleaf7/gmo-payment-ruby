@@ -39,8 +39,15 @@ module GMO
         end
         # Parse the body as Query string
         response = Rack::Utils.parse_nested_query(result.body.to_s)
-        # converting to UTF-8
-        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
+
+        if path == '/payment/SearchRecurringResultFile.idPass'
+          filtered_response = response.keys.first
+        else
+          # converting to UTF-8
+          filtered_response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
+        end
+
+        body = response = filtered_response
         # Check for errors if provided a error_checking_block
         yield(body) if error_checking_block
         # Return result

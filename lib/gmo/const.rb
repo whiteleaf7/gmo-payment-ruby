@@ -35,6 +35,7 @@ module GMO
       :card_pass             => "CardPass",
       :card_seq              => "CardSeq",
       :charge_day            => "ChargeDay",
+      :charge_date           => "ChargeDate",
       :charge_month          => "ChargeMonth",
       :charge_start_date     => "ChargeStartDate",
       :charge_stop_date      => "ChargeStopDate",
