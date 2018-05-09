@@ -1,5 +1,5 @@
 require "multi_json"
-module GMO
+module Gmo
   module JSON
 
     def self.dump(*args)

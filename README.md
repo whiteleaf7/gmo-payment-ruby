@@ -30,7 +30,7 @@ Usage
 ```ruby
 require 'gmo'
 # setup
-gmo = GMO::Payment::ShopAPI.new({:shop_id => "SHOP_ID", :shop_pass => "SHOP_PASS", :host => "foo.mul-pay.jp"})
+gmo = Gmo::Payment::ShopAPI.new({:shop_id => "SHOP_ID", :shop_pass => "SHOP_PASS", :host => "foo.mul-pay.jp"})
 #
 option = {
   :order_id => 1,

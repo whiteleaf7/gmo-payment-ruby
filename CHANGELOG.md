@@ -41,7 +41,7 @@
  * Some refactoring
 
 ## 0.2.3
- * Added module GMO::JSON to blur the differences between the different MultiJson
+ * Added module Gmo::JSON to blur the differences between the different MultiJson
  * Added test for ShopAndSiteAPI#trade_card
  * Fix typo and comment #4, #3 (Thanks @toshiwo, @fukayatsu)
 
@@ -49,7 +49,7 @@
  * Changed POST data encoding to Shift-JIS #2 (Thanks @keichan34)
 
 ## 0.2.1
- * Fix handling of ClientField options on GMO::Payment::ShopAPI#exec_tran
+ * Fix handling of ClientField options on Gmo::Payment::ShopAPI#exec_tran
 
 ## 0.2.0
 

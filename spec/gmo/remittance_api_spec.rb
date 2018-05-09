@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-describe "GMO::Payment::RemittanceAPI" do
+describe "Gmo::Payment::RemittanceAPI" do
 
   before(:each) do
-    @service ||= GMO::Payment::RemittanceAPI.new({
+    @service ||= Gmo::Payment::RemittanceAPI.new({
       :shop_id   => SPEC_CONF["remittance"]["shop_id"],
       :shop_pass => SPEC_CONF["remittance"]["shop_pass"],
       :host      => SPEC_CONF["remittance"]["host"],
@@ -16,7 +16,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
   it "should raise an ArgumentError if no options passed" do
     lambda {
-      service = GMO::Payment::RemittanceAPI.new()
+      service = Gmo::Payment::RemittanceAPI.new()
     }.should raise_error(ArgumentError)
   end
 
@@ -55,7 +55,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/AccountRegistration.idPass"
@@ -75,7 +75,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -111,7 +111,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/AccountRegistration.idPass"
@@ -131,7 +131,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -155,7 +155,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/AccountRegistration.idPass"
@@ -167,7 +167,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -201,7 +201,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/AccountSearch.idPass"
@@ -212,7 +212,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -245,7 +245,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/DepositRegistration.idPass"
@@ -259,7 +259,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -289,7 +289,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/DepositRegistration.idPass"
@@ -302,7 +302,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -341,7 +341,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/DepositSearch.idPass"
@@ -352,7 +352,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -397,7 +397,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/MailDepositRegistration.idPass"
@@ -414,7 +414,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -438,7 +438,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/MailDepositRegistration.idPass"
@@ -450,7 +450,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
@@ -479,7 +479,7 @@ describe "GMO::Payment::RemittanceAPI" do
 
     context 'with all required options' do
       let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(Gmo).to receive(:make_request) { response } }
 
       it "makes request with correct parameters", :vcr do
         path = "/api/MailDepositSearch.idPass"
@@ -490,7 +490,7 @@ describe "GMO::Payment::RemittanceAPI" do
         }
         verb = "post"
         options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(Gmo).to receive(:make_request).with(path, args, verb, options)
       end
 
       after { do_api_call }
