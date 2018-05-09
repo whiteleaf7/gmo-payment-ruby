@@ -3,7 +3,7 @@
 # A client for the GMO Payment API.
 #
 # example
-# gmo = GMO::Payment::ShopAPI.new({
+# gmo = Gmo::Payment::ShopAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
 #   host:        "mul-pay.com",
@@ -11,7 +11,7 @@
 
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
-module GMO
+module Gmo
   module Payment
 
     module ShopAPIMethods
@@ -308,7 +308,7 @@ module GMO
       # => {"Status"=>"CAPTURE", "OrderID"=>"597ae8c36120b23a3c00014e", "Forward"=>"2a99663", "Approve"=>"5487394", "TranID"=>"1707281634111111111111771216", "TranDate"=>"20170728163453", "ClientField1"=>"Custom field value 1", "ClientField2"=>"Custom field value 2", "ClientField3"=>"Custom field value 3"}
       def exec_tran_brandtoken(options = {})
         name = "ExecTranBrandtoken.idPass"
-        options[:token_type] = GMO::Const::TOKEN_TYPES_MAP[options[:token_type]]
+        options[:token_type] = Gmo::Const::TOKEN_TYPES_MAP[options[:token_type]]
         required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options

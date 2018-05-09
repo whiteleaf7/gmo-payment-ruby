@@ -3,7 +3,7 @@
 # A client for the GMO Payment API.
 #
 # example
-# gmo = GMO::Payment::SiteAPI.new({
+# gmo = Gmo::Payment::SiteAPI.new({
 #   site_id:     "foo",
 #   site_pass:   "bar",
 #   host:        "mul-pay.com",
@@ -11,7 +11,7 @@
 
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
-module GMO
+module Gmo
   module Payment
 
     module SiteAPIMethods

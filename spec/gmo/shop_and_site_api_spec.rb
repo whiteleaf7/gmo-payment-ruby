@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe "GMO::Payment::ShopAndSiteAPI" do
+describe "Gmo::Payment::ShopAndSiteAPI" do
 
   before(:each) do
-    @service ||= GMO::Payment::ShopAndSiteAPI.new({
+    @service ||= Gmo::Payment::ShopAndSiteAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
       :site_id   => SPEC_CONF["site_id"],
@@ -12,14 +12,14 @@ describe "GMO::Payment::ShopAndSiteAPI" do
       :locale    => :ja
 
     })
-    @shop_api ||= GMO::Payment::ShopAPI.new({
+    @shop_api ||= Gmo::Payment::ShopAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
       :host      => SPEC_CONF["host"],
       :locale    => :ja
 
     })
-    @site_api ||= GMO::Payment::SiteAPI.new({
+    @site_api ||= Gmo::Payment::SiteAPI.new({
       :site_id   => SPEC_CONF["site_id"],
       :site_pass => SPEC_CONF["site_pass"],
       :host      => SPEC_CONF["host"],
@@ -30,7 +30,7 @@ describe "GMO::Payment::ShopAndSiteAPI" do
 
   it "should raise an ArgumentError if no options passed" do
     lambda {
-      service = GMO::Payment::ShopAndSiteAPI.new()
+      service = Gmo::Payment::ShopAndSiteAPI.new()
     }.should raise_error(ArgumentError)
   end
 

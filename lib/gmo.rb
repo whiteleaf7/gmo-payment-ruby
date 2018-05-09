@@ -12,7 +12,7 @@ require "gmo/version"
 
 # Ruby client library for the GMO Payment Platform.
 
-module GMO
+module Gmo
 
   module Payment
 
@@ -28,14 +28,14 @@ module GMO
         path = "/payment/#{path}" unless path =~ /^\//
         options.merge!({ :host => @host })
         # Make request via the provided service
-        result = GMO.make_request path, args, verb, options
+        result = Gmo.make_request path, args, verb, options
         # Check for any 500 server errors before parsing the body
         if result.status >= 500
           error_detail = {
             :http_status => result.status.to_i,
             :body        => result.body,
           }
-          raise GMO::Payment::ServerError.new(result.body, error_detail)
+          raise Gmo::Payment::ServerError.new(result.body, error_detail)
         end
         # Parse the body as Query string
         response = Rack::Utils.parse_nested_query(result.body.to_s)
@@ -81,7 +81,7 @@ module GMO
         end
 
         def associate_options_to_gmo_params(options)
-          Hash[options.map { |k, v| [GMO::Const::INPUT_PARAMS[k], v] }]
+          Hash[options.map { |k, v| [Gmo::Const::INPUT_PARAMS[k], v] }]
         end
 
         def api_call(*args)
@@ -113,5 +113,5 @@ module GMO
     self.send :include, service
   end
 
-  GMO.http_service = NetHTTPService
+  Gmo.http_service = NetHTTPService
 end

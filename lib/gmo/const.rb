@@ -1,4 +1,4 @@
-module GMO
+module Gmo
   module Const
     ACCOUNT_TYPES_MAP = {
       :normal  => 1,

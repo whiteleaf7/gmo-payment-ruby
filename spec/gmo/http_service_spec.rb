@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 class FakeHTTPService
-  include GMO::HTTPService
+  include Gmo::HTTPService
 end
 
-describe "GMO::HTTPService" do
+describe "Gmo::HTTPService" do
 
   describe "common methods" do
     describe "server" do

@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe "GMO::Payment::API" do
+describe "Gmo::Payment::API" do
 
   describe "#get_request" do
     it "raises" do
       lambda {
-        service = GMO::Payment::API.new()
+        service = Gmo::Payment::API.new()
         service.get_request("foo")
       }.should raise_error(RuntimeError)
     end
@@ -14,7 +14,7 @@ describe "GMO::Payment::API" do
   describe "#post_request" do
     it "raises" do
       lambda {
-        service = GMO::Payment::API.new()
+        service = Gmo::Payment::API.new()
         service.post_request("foo")
       }.should raise_error(RuntimeError)
     end
@@ -23,7 +23,7 @@ describe "GMO::Payment::API" do
   describe "#api_call" do
     it "raises" do
       lambda {
-        service = GMO::Payment::API.new()
+        service = Gmo::Payment::API.new()
         service.api_call
       }.should raise_error(NoMethodError)
     end

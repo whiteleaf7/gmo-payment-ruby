@@ -3,13 +3,13 @@
 # A client for the GMO Remittance API.
 #
 # example
-# gmo = GMO::Payment::RemittanceAPI.new({
+# gmo = Gmo::Payment::RemittanceAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
 #   host:        "test-remittance.gmopg.jp",
 #   locale:      "ja"
 # })
-module GMO
+module Gmo
   module Payment
 
     module RemittanceAPIMethods
@@ -57,7 +57,7 @@ module GMO
       def create_account(options = {})
         name = "/api/AccountRegistration.idPass"
         options[:method] = 1
-        options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
+        options[:account_type] = Gmo::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
         required = %i(bank_id bank_code branch_code account_type account_name account_number)
         assert_required_options(required, options)
         post_request name, options
@@ -95,7 +95,7 @@ module GMO
       def update_account(options = {})
         name = "/api/AccountRegistration.idPass"
         options[:method] = 2
-        options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
+        options[:account_type] = Gmo::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
         required = %i(bank_id bank_code branch_code account_type account_name account_number)
         assert_required_options(required, options)
         post_request name, options
