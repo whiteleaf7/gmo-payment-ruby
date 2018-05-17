@@ -1,13 +1,13 @@
 # begin
 #   # do something...
-# rescue GMO::Payment::APIError => e
+# rescue Gmo::Payment::APIError => e
 #   puts e.response_body
 #   # => ErrCode=hoge&ErrInfo=hoge
 #   puts e.error_info
 #   # {"ErrCode"=>"hoge", "ErrInfo"=>"hoge"}
 # end
 
-module GMO
+module Gmo
 
   class GMOError < StandardError
     ERROR_INFO_SEPARATOR = '|'.freeze
@@ -15,12 +15,12 @@ module GMO
     private
 
       def error_message(info, locale)
-        ::GMO::Const::API_ERROR_MESSAGES[locale][info] || info
+        ::Gmo::Const::API_ERROR_MESSAGES[locale][info] || info
       end
   end
 
   module Payment
-    class Error < ::GMO::GMOError
+    class Error < ::Gmo::GMOError
       attr_accessor :error_info, :response_body, :locale, :error_messages
 
       def initialize(response_body = "", error_info = nil)
