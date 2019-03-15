@@ -1341,6 +1341,33 @@ module Gmo
         post_request name, options
       end
 
+      #【ソフトバンクまとめて支払い(B)継続課金決済】
+      ## 22.3.2.1. 継続課金解約
+      # 継続課金登録した取引に対して解約を行います。
+      # /payment/SbContinuanceCancel.idPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # ContinuanceMonth
+      ### @return ###
+      # OrderID
+      # Status
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.start_continuance_au({
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "",
+      #   order_id: "",
+      # })
+      # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
+      def cancel_continuance_sb(options = {})
+        name = "SbContinuanceCancel.idPass.idPass"
+        required = [:access_id, :access_pass, :order_id, :continuance_month]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       #【ドコモ継続課金サービス決済】
       ## 12.3.2.1. 継続課金終了(利用者)
       # 携帯端末から終了を行います。
@@ -1383,60 +1410,6 @@ module Gmo
         post_request name, options
       end
 
-      #【ソフトバンクまとめて支払い(B)継続課金決済】
-      ## 22.3.2.1. 継続課金解約
-      # 継続課金登録した取引に対して解約を行います。
-      # /payment/SbContinuanceCancel.idPass
-      # AccessID
-      # AccessPass
-      # OrderID
-      # ContinuanceMonth
-      ### @return ###
-      # OrderID
-      # Status
-      # ErrCode
-      # ErrInfo
-      ### example ###
-      # gmo.start_continuance_au({
-      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
-      #   access_pass: "",
-      #   order_id: "",
-      # })
-      # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
-      def cancel_continuance_sb(options = {})
-        name = "SbContinuanceCancel.idPass.idPass"
-        required = [:access_id, :access_pass, :order_id, :continuance_month]
-        assert_required_options(required, options)
-        post_request name, options
-      end
-
-      #【ドコモ継続課金サービス決済】
-      ## 12.3.2.2. 継続課金終了開始IFの呼出し(利用者)
-      # お客様をISPごとに適切な画面に誘導します。
-      # /payment/DocomoContinuanceUserEndStart.idPass
-      # AccessID
-      # Token
-      ### @return ###
-      # ShopID
-      # OrderID
-      # Status
-      # TranDate
-      # DocomoSettlementCode
-      # ErrCode
-      # ErrInfo
-      ### example ###
-      # gmo.user_end_continuance_docomo({
-      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
-      #   token: "",
-      # })
-      # {"ShopID"=>"", "OrderID" => "", "Status" => "", "TranDate" => "", "DocomoSettlementCode" => "", "ErrCode" => "", "ErrInfo" => ""}
-      def user_end_start_continuance_docomo(options = {})
-        name = "DocomoContinuanceUserEndStart.idPass.idPass"
-        required = [:access_id, :token]
-        assert_required_options(required, options)
-        post_request name, options
-      end
-
       #【ドコモ継続課金サービス決済】
       ## 12.3.4.1. 継続課金終了(加盟店様)
       # 継続課金の終了を行います。
@@ -1455,7 +1428,7 @@ module Gmo
       # ErrCode
       # ErrInfo
       ### example ###
-      # gmo.user_end_continuance_docomo({
+      # gmo.stop_end_continuance_docomo({
       #   access_id: "139f8ec33a07c55f406937c52ce4473d",
       #   access_pass: ",
       #   order_id: ",
