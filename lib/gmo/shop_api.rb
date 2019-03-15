@@ -1002,36 +1002,6 @@ module Gmo
         post_request name, options
       end
 
-      #【ドコモ継続課金サービス決済】
-      ## 12.1.1. 取引登録
-      # これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します
-      # /payment/EntryTranDocomoContinuance.idPass
-      # ShopID
-      # ShopPass
-      # OrderID
-      # Amount
-      # Tax
-      ### @return ###
-      # AccessID
-      # AccessPass
-      # ErrCode
-      # ErrInfo
-      ### example ###
-      # gmo.entry_tran_continuance_docomo({
-      #   shop_id:     "a41d83f1f4c908baeda04e6dc03e300c",
-      #   shop_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
-      #   order_id:      "597ae8c36120b23a3c00014e",
-      #   amount: 100,
-      #   tax:    0
-      # })
-      # {"AccessID"=>"", "AccessPass"=>"", "ErrCode" => "", "ErrInfo" => ""}
-      def entry_tran_continuance_docomo(options = {})
-        name = "EntryTranDocomoContinuance.idPass"
-        required = [:order_id, :amount]
-        assert_required_options(required, options)
-        post_request name, options
-      end
-
       #【ソフトバンクまとめて支払い(B)継続課金決済】
       ## 22.1.2.1. 取引登録
       # これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します
@@ -1062,6 +1032,35 @@ module Gmo
         post_request name, options
       end
 
+      #【ドコモ継続課金サービス決済】
+      ## 12.1.1. 取引登録
+      # これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します
+      # /payment/EntryTranDocomoContinuance.idPass
+      # ShopID
+      # ShopPass
+      # OrderID
+      # Amount
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.entry_tran_continuance_docomo({
+      #   shop_id:     "a41d83f1f4c908baeda04e6dc03e300c",
+      #   shop_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:      "597ae8c36120b23a3c00014e",
+      #   amount: 100,
+      #   tax:    0
+      # })
+      # {"AccessID"=>"", "AccessPass"=>"", "ErrCode" => "", "ErrInfo" => ""}
+      def entry_tran_continuance_docomo(options = {})
+        name = "EntryTranDocomoContinuance.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
 
       #【auかんたん決済継続課金決済】
       ## 10.1.2.2. 決済実行
@@ -1130,6 +1129,51 @@ module Gmo
         post_request name, options
       end
 
+      #【ソフトバンクまとめて支払い(B)継続課金決済】
+      ## 22.1.2.2. 決済実行
+      # これ以降の決済取引で必要となるトークンを返却します。
+      # /payment/ExecTranSbContinuance.idPass
+      # ShopID
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      # RetURL
+      # PaymentTermSec
+      # ChargeDay
+      # FirstMonthFreeFlag
+      ### @return ###
+      # AccessID
+      # Token
+      # StartURL
+      # StartLimitDate
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.exec_tran_continuance_sb({
+      #   shop_id:     "a41d83f1f4c908baeda04e6dc03e300c",
+      #   shop_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "2689b204d2c17192fa35f9269fa7e744"",
+      #   order_id: "597ae8c36120b23a3c00014e",
+      #   client_field_1: "",
+      #   client_field_2: "",
+      #   client_field_3: "",
+      #   ret_url: "",
+      #   payment_term_sec: "",
+      #   charge_day: "",
+      #   first_month_free_flg: "",
+      # })
+      # {"AccessID"=>"", "Token"=>"", "StartURL" => "", "StartLimitDate"=> "", "ErrCode" => "", "ErrInfo" => ""}
+      def exec_tran_continuance_sb(options = {})
+        name = "ExecTranSbContinuance.idPass"
+        required = [:access_id_id, :access_pass, :order_id, :ret_url, :charge_day, :first_month_free_flg]
+        assert_required_options(required, options)
+        post_request name, options
+      end
 
       #【ドコモ継続課金サービス決済】
       ## 10.1.2.2. 決済実行
@@ -1189,53 +1233,6 @@ module Gmo
         post_request name, options
       end
 
-      #【ソフトバンクまとめて支払い(B)継続課金決済】
-      ## 22.1.2.2. 決済実行
-      # これ以降の決済取引で必要となるトークンを返却します。
-      # /payment/ExecTranSbContinuance.idPass
-      # ShopID
-      # ShopPass
-      # AccessID
-      # AccessPass
-      # OrderID
-      # ClientField1
-      # ClientField2
-      # ClientField3
-      # RetURL
-      # PaymentTermSec
-      # ChargeDay
-      # FirstMonthFreeFlag
-      ### @return ###
-      # AccessID
-      # Token
-      # StartURL
-      # StartLimitDate
-      # ErrCode
-      # ErrInfo
-      ### example ###
-      # gmo.exec_tran_continuance_sb({
-      #   shop_id:     "a41d83f1f4c908baeda04e6dc03e300c",
-      #   shop_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
-      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
-      #   access_pass: "2689b204d2c17192fa35f9269fa7e744"",
-      #   order_id: "597ae8c36120b23a3c00014e",
-      #   client_field_1: "",
-      #   client_field_2: "",
-      #   client_field_3: "",
-      #   ret_url: "",
-      #   payment_term_sec: "",
-      #   charge_day: "",
-      #   first_month_free_flg: "",
-      # })
-      # {"AccessID"=>"", "Token"=>"", "StartURL" => "", "StartLimitDate"=> "", "ErrCode" => "", "ErrInfo" => ""}
-      def exec_tran_continuance_sb(options = {})
-        name = "ExecTranSbContinuance.idPass"
-        required = [:access_id_id, :access_pass, :order_id, :ret_url, :charge_day, :first_month_free_flg]
-        assert_required_options(required, options)
-        post_request name, options
-      end
-
-
       #【auかんたん決済継続課金決済】
       ## 10.1.2.3. 支払手続き開始IFの呼出し
       # お客様をau ID認証画面に誘導します。
@@ -1263,7 +1260,6 @@ module Gmo
         assert_required_options(required, options)
         post_request name, options
       end
-
 
       #【ドコモ継続課金サービス決済】
       ## 12.1.2.3. 支払手続き開始IFの呼出し
@@ -1319,7 +1315,6 @@ module Gmo
         assert_required_options(required, options)
         post_request name, options
       end
-
 
       #【auかんたん決済継続課金決済】
       ## 10.2.2.1. 継続課金解約
@@ -1388,6 +1383,33 @@ module Gmo
         post_request name, options
       end
 
+      #【ソフトバンクまとめて支払い(B)継続課金決済】
+      ## 22.3.2.1. 継続課金解約
+      # 継続課金登録した取引に対して解約を行います。
+      # /payment/SbContinuanceCancel.idPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      # ContinuanceMonth
+      ### @return ###
+      # OrderID
+      # Status
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.start_continuance_au({
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "",
+      #   order_id: "",
+      # })
+      # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
+      def cancel_continuance_sb(options = {})
+        name = "SbContinuanceCancel.idPass.idPass"
+        required = [:access_id, :access_pass, :order_id, :continuance_month]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       #【ドコモ継続課金サービス決済】
       ## 12.3.2.2. 継続課金終了開始IFの呼出し(利用者)
       # お客様をISPごとに適切な画面に誘導します。
@@ -1445,32 +1467,6 @@ module Gmo
       def stop_end_continuance_docomo(options = {})
         name = "DocomoContinuanceShopEnd.idPass.idPass"
         required = [:access_id, :access_pass, :order_id, :amount, :last_month_free_flag]
-        assert_required_options(required, options)
-        post_request name, options
-      end
-
-      #【ソフトバンクまとめて支払い(B)継続課金決済】
-      ## 22.3.2.1. 継続課金解約
-      # 継続課金登録した取引に対して解約を行います。
-      # /payment/SbContinuanceCancel.idPass
-      # AccessID
-      # AccessPass
-      # OrderID
-      ### @return ###
-      # OrderID
-      # Status
-      # ErrCode
-      # ErrInfo
-      ### example ###
-      # gmo.start_continuance_au({
-      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
-      #   access_pass: "",
-      #   order_id: "",
-      # })
-      # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
-      def cancel_continuance_au(options = {})
-        name = "AuContinuanceCancel.idPass.idPass"
-        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end
