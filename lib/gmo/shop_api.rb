@@ -1348,7 +1348,6 @@ module Gmo
       # AccessID
       # AccessPass
       # OrderID
-      # ContinuanceMonth
       ### @return ###
       # OrderID
       # Status
@@ -1363,7 +1362,7 @@ module Gmo
       # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
       def cancel_continuance_sb(options = {})
         name = "SbContinuanceCancel.idPass.idPass"
-        required = [:access_id, :access_pass, :order_id, :continuance_month]
+        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end
