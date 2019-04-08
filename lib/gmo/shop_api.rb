@@ -968,6 +968,39 @@ module Gmo
         post_request name, options
       end
 
+      #【不正防止サービス(Red)】
+      ## 2.1.2.3. 不正審査
+      # カード決済情報(取引情報、顧客情報)を受け取り不正審査を行い結果を返却します。
+      # /payment/ExecFraudScreening.idPass
+      # ShopId
+      # ShopPass
+      # AccessID
+      # AccessPass
+      # OrderID
+      ## @return ##
+      # ErrCode
+      # ErrInfo
+      # RED_REQ_ID
+      # RED_ORD_ID
+      # RED_STAT_CD
+      # RED_FRAUD_STAT_CD
+      # RED_FRAUD_RSP_CD
+      # RED_FRAUD_RSP_MSG
+      # RED_FRAUD_REC_ID
+      ### example ###
+      # gmo.exec_fraud_screening({
+      #   access_id:     "a41d83f1f4c908baeda04e6dc03e300c",
+      #   access_pass:   "d72eca02e28c88f98b9341a33ba46d5d",
+      #   order_id:      "597ae8c36120b23a3c00014e"
+      # })
+      # {"red_req_id":"350543690355","red_ord_id":"4824C272A349616D","red_stat_cd":"PENDING","red_fraud_stat_cd":"ACCEPT","red_fraud_rsp_cd":"0150","red_fraud_rsp_msg":"","red_fraud_rec_id":"000475071001RBL20190410073318546"}
+      def exec_fraud_screening(options = {})
+        name = "ExecFraudScreening.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
