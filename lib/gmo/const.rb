@@ -147,7 +147,8 @@ module Gmo
       :lang_cd               => "LangCd",
       :user_info             => "UserInfo",
       :package_name          => "PackageName",
-      :account_timing_kgn    => "AccountTimingKgn"
+      :account_timing_kgn    => "AccountTimingKgn",
+      :first_account_date    => "FirstAccountDate"
     }.freeze
 
     API_ERROR_MESSAGES_EN = {
