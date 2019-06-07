@@ -1335,7 +1335,7 @@ module Gmo
       # })
       # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
       def cancel_continuance_au(options = {})
-        name = "AuContinuanceCancel.idPass.idPass"
+        name = "AuContinuanceCancel.idPass"
         required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
@@ -1361,7 +1361,7 @@ module Gmo
       # })
       # {"ShopID"=>"", "Status" => "", "ErrCode" => "", "ErrInfo" => ""}
       def cancel_continuance_sb(options = {})
-        name = "SbContinuanceCancel.idPass.idPass"
+        name = "SbContinuanceCancel.idPass"
         required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
@@ -1403,7 +1403,7 @@ module Gmo
       # })
       # {"AccessID"=>"", "Token" => "", "StartURL" => "", "StartLimitDate" => "", "ErrCode" => "", "ErrInfo" => ""}
       def user_end_continuance_docomo(options = {})
-        name = "DocomoContinuanceUserEnd.idPass.idPass"
+        name = "DocomoContinuanceUserEnd.idPass"
         required = [:access_id, :access_pass, :order_id, :amount, :ret_url, :last_month_free_flag]
         assert_required_options(required, options)
         post_request name, options
@@ -1437,7 +1437,7 @@ module Gmo
       # })
       # {"ShopID"=>"", "OrderID" => "", "Status" => "", "TranDate" => "", "DocomoSettlementCode" => "", "ErrCode" => "", "ErrInfo" => ""}
       def stop_end_continuance_docomo(options = {})
-        name = "DocomoContinuanceShopEnd.idPass.idPass"
+        name = "DocomoContinuanceShopEnd.idPass"
         required = [:access_id, :access_pass, :order_id, :amount, :last_month_free_flag]
         assert_required_options(required, options)
         post_request name, options
