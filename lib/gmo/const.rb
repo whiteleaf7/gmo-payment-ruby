@@ -146,7 +146,8 @@ module Gmo
       :delivery_place_phone  => "DeliveryPlacePhone",
       :lang_cd               => "LangCd",
       :user_info             => "UserInfo",
-      :package_name          => "PackageName"
+      :package_name          => "PackageName",
+      :account_timing_kgn    => "AccountTimingKgn"
     }.freeze
 
     API_ERROR_MESSAGES_EN = {
