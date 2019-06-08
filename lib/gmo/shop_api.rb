@@ -1170,7 +1170,7 @@ module Gmo
       # {"AccessID"=>"", "Token"=>"", "StartURL" => "", "StartLimitDate"=> "", "ErrCode" => "", "ErrInfo" => ""}
       def exec_tran_continuance_sb(options = {})
         name = "ExecTranSbContinuance.idPass"
-        required = [:access_id_id, :access_pass, :order_id, :ret_url, :charge_day, :first_month_free_flg]
+        required = [:access_id, :access_pass, :order_id, :ret_url, :charge_day, :first_month_free_flag]
         assert_required_options(required, options)
         post_request name, options
       end
@@ -1228,7 +1228,7 @@ module Gmo
       # {"AccessID"=>"", "Token"=>"", "StartURL" => "", "StartLimitDate"=> "", "ErrCode" => "", "ErrInfo" => ""}
       def exec_tran_continuance_docomo(options = {})
         name = "ExecTranDocomoContinuance.idPass"
-        required = [:access_id_id, :access_pass, :order_id, :ret_url, :first_month_free_flg, :confirm_base_date]
+        required = [:access_id, :access_pass, :order_id, :ret_url, :first_month_free_flag, :confirm_base_date]
         assert_required_options(required, options)
         post_request name, options
       end
