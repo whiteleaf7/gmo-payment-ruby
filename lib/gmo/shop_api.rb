@@ -1123,7 +1123,7 @@ module Gmo
         name = "ExecTranAuContinuance.idPass"
         required = [:access_id, :access_pass, :order_id, :commodity, :ret_url, :service_name, :service_tel]
         if options[:site_id].present?
-          required = [:site_id, :site_pass, :member_id, :create_member]
+          required |= [:site_id, :site_pass, :member_id, :create_member]
         end
         assert_required_options(required, options)
         post_request name, options
