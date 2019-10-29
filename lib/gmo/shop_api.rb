@@ -280,7 +280,7 @@ module Gmo
         post_request name, options
       end
 
-      # 【Famipayまとめて支払い決済】
+      # 【Famipay決済】
       #  4.3.1.2. 決済実行
       # これ以降の決済取引で必要となるトークンを返却します。
       def exec_tran_famipay(options = {})
@@ -988,7 +988,7 @@ module Gmo
         post_request name, options
       end
 
-      #【Famipayケータイ払い決済】
+      #【Famipay決済】
       ## 4.3.2.1. 決済キャンセル・返品 接続先URL
       # 決済が完了した取引に対して決済内容のキャンセル・返品を行います。
       # /payment/FamipayCancelReturn.idPass

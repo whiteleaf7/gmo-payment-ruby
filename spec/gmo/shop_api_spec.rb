@@ -174,6 +174,24 @@ describe "Gmo::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_famipay" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_famipay({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_famipay()
+      }.should raise_error("Required order_id, job_cd, amount were not provided.")
+    end
+  end
+
   describe "#entry_tran_brandtoken" do
     it "gets data about a transaction", :vcr do
       order_id = @order_id
