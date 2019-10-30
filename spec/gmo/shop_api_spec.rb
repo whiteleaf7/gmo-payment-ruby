@@ -188,7 +188,7 @@ describe "Gmo::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.entry_tran_famipay()
-      }.should raise_error("Required order_id, job_cd, amount were not provided.")
+      }.should raise_error("Required order_id, amount were not provided.")
     end
   end
 
@@ -539,6 +539,33 @@ describe "Gmo::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran_docomo()
+      }.should raise_error("Required access_id, access_pass, order_id, ret_url were not provided.")
+    end
+  end
+
+  describe "#exec_tran_famipay" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_famipay({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_famipay({
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :order_id      => order_id,
+        :ret_url       => 'https://example.com/path/to/return/success'
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["Token"].nil?.should_not be_truthy
+      result["StartURL"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_famipay()
       }.should raise_error("Required access_id, access_pass, order_id, ret_url were not provided.")
     end
   end
