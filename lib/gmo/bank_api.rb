@@ -129,7 +129,7 @@ module Gmo
       #   access_id:    "a41d83f1f4c908baeda04e6dc03e300c",
       #   access_pass:  "d72eca02e28c88f98b9341a33ba46d5d"
       # })
-      # TODO: 返却パラメータをコピペする
+      # {"OrderID"=>"100", "Status"=>"STOP", "ClientField1"=>"", "ClientField2"=>"", "ClientField3"=>"", "TotalTransferAmount"=>"0", "TotalTransferCount"=>"0", "LatestTransferAmount"=>"0", "LatestTransferDate"=>"", "LatestTransferName"=>"", "LatestTransferBankName"=>"", "LatestTransferBranchName"=>""}
       def cancel_tran_ganb(options = {})
         name = "CancelTranGANB.idPass"
         required = [:access_id, :access_pass, :order_id]
@@ -163,7 +163,6 @@ module Gmo
       #   date_from:    "20191101",
       #   date_to:      "20191130",
       # })
-      # TODO: 返却パラメータをコピペする
       def inquiry_transfer_ganb(options = {})
         name = "InquiryTransferGANB.idPass"
         required = [:access_id, :access_pass, :order_id]
@@ -209,7 +208,7 @@ module Gmo
       # gmo.search_trade_multi({
       #   order_id: 100
       # })
-      # TODO: paste
+      # {"Status"=>"TRADING", "ProcessDate"=>"20191111121345", "AccessID"=>"cc3b3a9da2c80da2d9da6f6ce1cf367a", "AccessPass"=>"69f1246d318144bc5e11188d3e9dde25", "Amount"=>"10000", "Tax"=>"", "ClientField1"=>"", "ClientField2"=>"", "ClientField3"=>"", "PayType"=>"36", "GanbBankCode"=>"0310", "GanbBankName"=>"ジーエムオーアオゾラネット", "GanbBranchCode"=>"503", "GanbBranchName"=>"郷骸竹", "GanbAccountType"=>"1", "GanbAccountNumber"=>"5247184", "GanbAccountHolderName"=>"テストショップnull", "GanbExpireDays"=>"7", "GanbExpireDate"=>"20191118", "GanbTradeReason"=>"", "GanbTradeClientName"=>"", "GanbTotalTransferAmount"=>"0", "GanbTotalTransferCount"=>"0", "GanbLatestTransferAmount"=>"", "GanbLatestTransferDate"=>"", "GanbLatestTransferName"=>"", "GanbLatestTransferBankName"=>""}
       def search_trade_multi(options = {})
         name = "SearchTradeMulti.idPass"
         required = [:order_id]
