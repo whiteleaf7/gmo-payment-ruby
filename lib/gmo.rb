@@ -45,7 +45,7 @@ module Gmo
           filtered_response = response.keys.first
         else
           # converting to UTF-8
-          filtered_response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
+          filtered_response = Hash[response.map { |k,v| [k, NKF.nkf('-wSx',v)] }]
         end
 
         body = response = filtered_response
