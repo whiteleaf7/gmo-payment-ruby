@@ -39,13 +39,18 @@ module Gmo
           raise Gmo::Payment::ServerError.new(result.body, error_detail)
         end
         # Parse the body as Query string
-        response = Rack::Utils.parse_nested_query(result.body.to_s)
+        response = parse_nested_query(result.body.to_s, path)
 
         if path == '/payment/SearchRecurringResultFile.idPass'
           filtered_response = response.keys.first
         else
           # converting to UTF-8
-          filtered_response = Hash[response.map { |k,v| [k, NKF.nkf('-wSx',v)] }]
+          filtered_response =
+            if response.is_a?(Hash)
+              Hash[response.map { |k,v| [k, NKF.nkf('-wSx',v)] }]
+            else
+              response
+            end
         end
 
         body = response = filtered_response
@@ -73,6 +78,10 @@ module Gmo
         api_call(name, args, "post", options)
       end
       alias :post! :post_request
+
+      def parse_nested_query(body, _path)
+        Rack::Utils.parse_nested_query(body)
+      end
 
       private
 

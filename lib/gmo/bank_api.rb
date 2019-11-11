@@ -152,6 +152,7 @@ module Gmo
       # TransferBankName
       # TransferBranchName
       # TransferAmount
+      # (上記を1セットとした配列)
       # # 異常終了の場合
       # ErrCode
       # ErrInfo
@@ -163,6 +164,16 @@ module Gmo
       #   date_from:    "20191101",
       #   date_to:      "20191130",
       # })
+      # => [{"TransferDate"=>"20191111",
+      #  "TransferName"=>"ADMINISTRATOR",
+      #  "TarnsferBankName"=>"ﾃｽﾄｷﾞﾝｺｳ",
+      #  "TradeBranchName"=>"ﾃｽﾄｼﾃﾝ",
+      #  "TransferAmount"=>"1000"},
+      # {"TransferDate"=>"20191111",
+      #  "TransferName"=>"ADMINISTRATOR",
+      #  "TarnsferBankName"=>"ﾃｽﾄｷﾞﾝｺｳ",
+      #  "TradeBranchName"=>"ﾃｽﾄｼﾃﾝ",
+      #  "TransferAmount"=>"2000"}]
       def inquiry_transfer_ganb(options = {})
         name = "InquiryTransferGANB.idPass"
         required = [:access_id, :access_pass, :order_id]
@@ -215,6 +226,27 @@ module Gmo
         options[:pay_type] = "36"
         assert_required_options(required, options)
         post_request name, options
+      end
+
+      def parse_nested_query(result_body, path)
+        if result_body.start_with?("ErrCode=") || path != "/payment/InquiryTransferGANB.idPass"
+          return super
+        end
+
+        # /payment/InquiryTransferGANB.idPass の正常系出力は特殊で、
+        # 1履歴1行として、履歴の数分下記のフォーマットで返ってくる
+        # {TransferDate}|{TransferName}|{TarnsferBankName}|{TradeBranchName}|{TransferAmount}
+        body = NKF.nkf("-wSx", result_body)
+        body.lines(chomp: true).map do |line|
+          params = line.split("|")
+          {
+            "TransferDate" => params[0],
+            "TransferName" => params[1],
+            "TarnsferBankName" => params[2],
+            "TradeBranchName" => params[3],
+            "TransferAmount" => params[4]
+          }
+        end
       end
 
       private
