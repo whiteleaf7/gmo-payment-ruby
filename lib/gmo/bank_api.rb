@@ -94,7 +94,7 @@ module Gmo
       #   trade_days:    7,
       #   client_field_1: "client_field1"
       # })
-      # {"AccessID"=>"cc3b3a9da2c80da2d9da6f6ce1cf367a", "BankCode"=>"0310", "BankName"=>"ジーエムオーアオゾラネット", "BranchCode"=>"503", "BranchName"=>"郷骸竹", "AccountType"=>"1", "AccountNumber"=>"5247184", "AccountHolderName"=>"テストショップnull", "AvailableDate"=>"20191118"}
+      # {"AccessID"=>"cc3b3a9da2c80da2d9da6f6ce1cf367a", "BankCode"=>"0310", "BankName"=>"ｼﾞｰｴﾑｵｰｱｵｿﾞﾗﾈｯﾄ", "BranchCode"=>"503", "BranchName"=>"ｶｿｳｼﾃﾝ", "AccountType"=>"1", "AccountNumber"=>"5247184", "AccountHolderName"=>"ﾃｽﾄｼｮｯﾌﾟnull", "AvailableDate"=>"20191118"}
       def exec_tran_ganb(options = {})
         name = "ExecTranGANB.idPass"
         required = [:access_id, :access_pass, :order_id]
