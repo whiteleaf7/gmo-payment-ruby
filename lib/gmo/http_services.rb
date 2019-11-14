@@ -54,7 +54,7 @@ module Gmo
             ((param_hash || {}).collect do |key_and_value|
               key_and_value[1] = Gmo::JSON.dump(key_and_value[1]) if key_and_value[1].class != String
               # converting to Shift-JIS
-              sjis_value = NKF.nkf('-s', key_and_value[1])
+              sjis_value = NKF.nkf('-sWx', key_and_value[1])
               "#{key_and_value[0].to_s}=#{CGI.escape sjis_value}"
             end).join("&")
           end
