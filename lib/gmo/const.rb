@@ -151,7 +151,8 @@ module Gmo
       :trade_client_name     => "TradeClientName",
       :trade_client_mailaddress => "TradeClientMailaddress",
       :date_from             => "DateFrom",
-      :date_to               => "DateTo"
+      :date_to               => "DateTo",
+      :process_date          => "ProcessDate"
     }.freeze
 
     API_ERROR_MESSAGES_EN = {
